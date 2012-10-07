@@ -16,6 +16,10 @@ Suricatac: $(OBJS)
 clean:
 	rm -rf ./src/*.o
 	rm -f ./bin/$(EXEC)
+	rm -rf ./tests/output/*
 
-dist:
-	tar cvfj ../$(DIST).tar.gz ../$(EXEC) 
+dist: clean
+	mkdir ../$(DIST)
+	cp -r ../$(EXEC)/*  ../$(DIST)
+	tar cvfj ../$(DIST).tar.gz ../$(DIST) 
+	rm -rf ../$(DIST)
