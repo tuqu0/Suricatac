@@ -1,1 +1,0 @@
-/home/vincent/Cours/C/Suricata/tests/pcaps/Apple_IP-over-IEEE_1394_Packet.pcap;/home/vincent/Cours/C/Suricata/tests/output

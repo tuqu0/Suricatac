@@ -1,4 +1,0 @@
-../tests/pcaps/Apple_IP-over-IEEE_1394_Packet.pcap;output
-bfd-raw-auth-md5.pcap;output
-NTLM-wenchao.pcap;output
-Obsolete_Packets.cap;output
