@@ -9,6 +9,7 @@ DIST= puydoyeux_vincent-Suricatac
 
 Suricatac: $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o ./bin/$(EXEC) $(OBJS) $(LIBS)
+	cp -f ./bin/$(EXEC) ./tests/
 
 .c.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -16,8 +17,9 @@ Suricatac: $(OBJS)
 clean:
 	rm -rf ./src/*.o
 	rm -f ./bin/$(EXEC)
+	rm -f ./tests/$(EXEC)
 	rm -rf ./tests/output/*
-
+	
 dist: clean
 	mkdir ../$(DIST)
 	cp -r ../$(EXEC)/*  ../$(DIST)

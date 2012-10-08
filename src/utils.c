@@ -78,10 +78,14 @@ PCAP* build_list(char* file) {
 	size_t len = 0;
 	ssize_t read;
 	char *line;
-	char *pcapfile;
-	char *dir;
-	PCAP *list = NULL;
+	char *token1;
+	char *token2;
+	char *pcap_file;
+	char *output_dir;
+	char real_path[PATH_MAX];
 
+	PCAP *list = NULL;
+	
 	if (is_readable(file) != 0)
 		return NULL;
 	if ((fd = fopen(file, "r")) == NULL)
@@ -90,18 +94,35 @@ PCAP* build_list(char* file) {
 		fprintf(stderr, "error: %s is empty\n", file);
 
 	while ((read = getline(&line, &len, fd)) != -1) {
-		pcapfile = strtok(line, DELIMITOR);
-		dir = strtok(NULL, DELIMITOR);
+		token1 = strtok(line, DELIMITOR);
+		token2 = strtok(NULL, DELIMITOR);
 
-		if (pcapfile == NULL || dir == NULL) {
+		if (token1 == NULL || token2 == NULL) {
 			fclose(fd);
 			fprintf(stderr, "error: unable to parse the line \"%s\"\n", line);
 			return NULL;
 		}
 
-		if (dir[strlen(dir) -1] == '\n')
-			dir[strlen(dir) -1] = '\0';
-		list = push_list(pcapfile, dir, list);
+		if (token2[strlen(token2) -1] == '\n')
+			token2[strlen(token2) -1] = '\0';
+		
+		realpath(token1, real_path);
+		pcap_file = (char *) malloc(strlen(real_path) + 1);	
+		if (pcap_file == NULL) {
+			fclose(fd);
+			return NULL;
+		}
+		strcpy(pcap_file, real_path);
+		
+		realpath(token2, real_path);
+		if (output_dir == NULL) {
+			fclose(fd);
+			return NULL;
+		}
+		output_dir = (char *) malloc(strlen(real_path) + 1);
+		strcpy(output_dir, real_path);
+
+		list = push_list(pcap_file, output_dir, list);
 	}
 	fclose(fd);
 	return list;
@@ -112,11 +133,8 @@ PCAP* push_list(char *file, char *dir, PCAP *list) {
 	PCAP *elt;
 
 	elt = (PCAP *) malloc(sizeof(PCAP));
-	elt->file = (char *) malloc(256);
-	elt->file = (char *) malloc(strlen(file) + 1);
-	elt->dir = (char *) malloc(strlen(dir) + 1);
-	strcpy(elt->file, file);
-	strcpy(elt->dir, dir);
+	elt->file = file;
+	elt->dir = dir; 
 
 	if (list == NULL)
 		return elt;

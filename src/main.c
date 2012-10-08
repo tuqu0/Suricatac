@@ -16,21 +16,29 @@ int main(int argc, char **argv) {
 		if (cmd == NULL)
 			return 1;
 
-		socket = suricata_connect();
-		suricata_send(VERSION, socket);
-		suricata_read(socket);
-		suricata_send(cmd, socket);
-		suricata_read(socket);
-		suricata_close(socket);
+		if ((socket = suricata_connect()) != -1) {
+			suricata_send(VERSION, socket);
+			suricata_read(socket);
+			suricata_send(cmd, socket);
+			suricata_read(socket);
+			suricata_close(socket);
+		}
 		free(cmd);
 	}
-
-	if (opt == OPT_F && argc == 3) {
+	else if (opt == OPT_F && argc == 3) {
 		if ((list = build_list(argv[2])) == NULL)
 			return 1;
-	
-		printf("%d\n", check_list(list));
+
+		check_list(list);
 		free_list(list);
 	}
+	else {
+		printf("usage: ./Suricatac [option] [args]\n \
+				options: -h HELP\n \
+				-v [args]\n \
+				-d [timeout] [args]\n \
+				-f [list_pcaps]\n \
+				[pcapfile] [outputdir]\n");
+	}			      
 	return 0;
 }

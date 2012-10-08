@@ -8,8 +8,10 @@ int suricata_connect() {
 	addr.sun_family = AF_UNIX;
 	strcpy(addr.sun_path, SOCKET_PATH);
 
-	if (connect(socketfd, (struct sockaddr *)&addr, sizeof(addr)) == -1)
+	if (connect(socketfd, (struct sockaddr *)&addr, sizeof(addr)) == -1) {
 		fprintf(stderr, "connection socket error %i: %s\n", errno, strerror(errno));
+		return 1;
+	}
 	return socketfd;
 }
 
@@ -71,7 +73,7 @@ int suricata_read(int socket) {
 		}
 	}
 
-	if (sizeof(buf) > 0)
+	if (strlen(buf) > 0)
 		printf("suricata: %s\n", buf);
 	free(buf);
 	return 0;
