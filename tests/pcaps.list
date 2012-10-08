@@ -1,0 +1,3 @@
+pcaps/bfd-raw-auth-md5.pcap;output/bfd-raw-auth-mdd5
+pcaps/NTLM-wenchao.pcap;output/NTLM-wenchao
+pcaps/Obsolete_Packets.cap;output/Obsolete_Packets

@@ -26,6 +26,9 @@ typedef struct pcap {
 /* Options parser - Returns the selected option */
 int myopt (int argc, char **argv); 
 
+/* Explain how to use Suricatac */
+void usage();
+
 /* Check if the file is readable */
 int is_readable(char *file);
 

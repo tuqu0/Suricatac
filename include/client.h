@@ -13,7 +13,7 @@
 #define VERSION "{\"version\": \"0.1\"}"
 #define CMD_PCAP "{\"command\": \"pcap-file\", \"arguments\": { \"filename\": \"%s\", \"output-dir\": \"%s\"}}"
 #define RCV_MAX 100
-
+#define TIMEOUT 1000000
 /* Connection to Suricata - return the socket */
 int suricata_connect();
 

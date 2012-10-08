@@ -24,6 +24,7 @@ int suricata_close(int socket) {
 int suricata_send(char *cmd, int socket) {
 	int len;
 
+	printf("cmd = %s\n\n", cmd);
 	len = strlen(cmd);
 	if (send(socket, cmd, len, 0) == -1) {
 		fprintf(stderr, "send socket error %i: %s\n", errno, strerror(errno));
@@ -52,7 +53,7 @@ int suricata_read(int socket) {
 		if (ret == -1) {
 			if (errno == EAGAIN) {
 				cpt++;
-				if (cpt > 10000)
+				if (cpt > TIMEOUT)
 					break;
 				else
 					continue;

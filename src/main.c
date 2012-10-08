@@ -5,6 +5,7 @@ int main(int argc, char **argv) {
 	char opt;
 	char *cmd;
 	PCAP *list = NULL;
+	PCAP *tmp;
 
 	opt = myopt(argc, argv);
 
@@ -29,16 +30,28 @@ int main(int argc, char **argv) {
 		if ((list = build_list(argv[2])) == NULL)
 			return 1;
 
-		check_list(list);
+		if (check_list(list) == 0) {
+			tmp = list;
+
+			if ((socket = suricata_connect()) != -1) {
+				cmd = get_cmdPcap(tmp->file, tmp->dir);
+				suricata_send(VERSION, socket);
+				suricata_read(socket);
+				suricata_send(cmd, socket);
+				suricata_read(socket);
+				
+				while (tmp->next != NULL) {
+					tmp = tmp->next;
+					cmd =get_cmdPcap(tmp->file, tmp->dir);
+					suricata_send(cmd, socket);
+					suricata_read(socket);
+				}
+				suricata_close(socket);
+			}
+		}
 		free_list(list);
 	}
-	else {
-		printf("usage: ./Suricatac [option] [args]\n \
-				options: -h HELP\n \
-				-v [args]\n \
-				-d [timeout] [args]\n \
-				-f [list_pcaps]\n \
-				[pcapfile] [outputdir]\n");
-	}			      
+	else 
+		usage();
 	return 0;
 }

@@ -45,6 +45,15 @@ int  myopt(int argc, char **argv) {
 	return ret;
 }
 
+void usage() {
+   printf("usage: ./Suricatac [option] [args]\n \
+           options: -h HELP\n \
+           -v [args]\n \
+           -d [timeout] [args]\n \
+           -f [list_pcaps]\n \
+              [pcapfile] [outputdir]\n");
+}
+
 int is_readable(char *file) {
 	if (access(file, R_OK) == -1) {
 		fprintf(stderr, "error: %s is not readable\n", file);
@@ -184,4 +193,3 @@ void free_list(PCAP *list) {
 		free(tmp->dir);
 	free(tmp);
 }
-
