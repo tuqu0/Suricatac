@@ -64,8 +64,8 @@ int suricata_send(char *cmd, int socket) {
 	}
 
 	printf("command  : %s\n", cmd);
-	if (strlen(buf) > 0);
-	printf("suricata : %s\n\n", buf);
+	if (strlen(buf) > 0)
+		printf("suricata : %s\n\n", buf);
 	free(buf);
 
 	return 0;

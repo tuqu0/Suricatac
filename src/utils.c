@@ -40,18 +40,18 @@ int  myopt(int argc, char **argv) {
 					printf("usage: -f [file]\n");
 				ret = OPT_F;
 				return ret;
-	}
+		}
 	}
 	return ret;
 }
 
 void usage() {
-   printf("usage: ./Suricatac [option] [args]\n \
-           options: -h HELP\n \
-           -v [args]\n \
-           -d [timeout] [args]\n \
-           -f [list_pcaps]\n \
-              [pcapfile] [outputdir]\n");
+	printf("usage: ./Suricatac [option] [args]\n \
+			options: -h HELP\n \
+			-v [args]\n \
+			-d [timeout] [args]\n \
+			-f [list_pcaps]\n \
+			[pcapfile] [outputdir]\n");
 }
 
 int is_readable(char *file) {
@@ -93,7 +93,7 @@ PCAP* build_list(char* file) {
 	char *output_dir;
 	char real_path[PATH_MAX];
 	PCAP *list = NULL;
-	
+
 	if (is_readable(file) != 0)
 		return NULL;
 	if ((fd = fopen(file, "r")) == NULL)
@@ -113,7 +113,7 @@ PCAP* build_list(char* file) {
 
 		if (token2[strlen(token2) -1] == '\n')
 			token2[strlen(token2) -1] = '\0';
-		
+
 		realpath(token1, real_path);
 		pcap_file = (char *) malloc(strlen(real_path) + 1);	
 		if (pcap_file == NULL) {
@@ -121,7 +121,7 @@ PCAP* build_list(char* file) {
 			return NULL;
 		}
 		strcpy(pcap_file, real_path);
-		
+
 		realpath(token2, real_path);
 		if (output_dir == NULL) {
 			fclose(fd);
@@ -158,7 +158,7 @@ PCAP* push_list(char *file, char *dir, PCAP *list) {
 int check_list(PCAP *list) {
 	PCAP *tmp;
 	tmp = list;
-	
+
 	if (is_readable(tmp->file) == 1 || is_directory(tmp->dir) == 1)
 		return 1;
 
