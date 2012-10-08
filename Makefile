@@ -17,6 +17,7 @@ clean:
 	rm -rf ./src/*.o
 	rm -f ./bin/$(EXEC)
 	rm -f ./tests/$(EXEC)
+	rm -rf ./tests/output/*
 	
 dist: clean
 	mkdir ../$(DIST)

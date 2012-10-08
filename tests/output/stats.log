@@ -1,0 +1,165 @@
+-------------------------------------------------------------------
+Date: 10/8/2012 -- 06:51:28 (uptime: 0d, 00h 00m 08s)
+-------------------------------------------------------------------
+Counter                   | TM Name                   | Value
+-------------------------------------------------------------------
+decoder.pkts              | ReceivePcapFile           | 168120
+decoder.bytes             | ReceivePcapFile           | 520316
+decoder.ipv4              | ReceivePcapFile           | 4343
+decoder.ipv6              | ReceivePcapFile           | 0
+decoder.ethernet          | ReceivePcapFile           | 168120
+decoder.raw               | ReceivePcapFile           | 0
+decoder.sll               | ReceivePcapFile           | 0
+decoder.tcp               | ReceivePcapFile           | 0
+decoder.udp               | ReceivePcapFile           | 0
+decoder.sctp              | ReceivePcapFile           | 0
+decoder.icmpv4            | ReceivePcapFile           | 4343
+decoder.icmpv6            | ReceivePcapFile           | 0
+decoder.ppp               | ReceivePcapFile           | 0
+decoder.pppoe             | ReceivePcapFile           | 0
+decoder.gre               | ReceivePcapFile           | 0
+decoder.vlan              | ReceivePcapFile           | 0
+decoder.teredo            | ReceivePcapFile           | 0
+decoder.ipv4_in_ipv6      | ReceivePcapFile           | 0
+decoder.ipv6_in_ipv6      | ReceivePcapFile           | 0
+decoder.avg_pkt_size      | ReceivePcapFile           | 3
+decoder.max_pkt_size      | ReceivePcapFile           | 202
+defrag.ipv4.fragments     | ReceivePcapFile           | 0
+defrag.ipv4.reassembled   | ReceivePcapFile           | 0
+defrag.ipv4.timeouts      | ReceivePcapFile           | 0
+defrag.ipv6.fragments     | ReceivePcapFile           | 0
+defrag.ipv6.reassembled   | ReceivePcapFile           | 0
+defrag.ipv6.timeouts      | ReceivePcapFile           | 0
+defrag.max_frag_hits      | ReceivePcapFile           | 0
+tcp.sessions              | Detect                    | 0
+tcp.ssn_memcap_drop       | Detect                    | 0
+tcp.pseudo                | Detect                    | 0
+tcp.invalid_checksum      | Detect                    | 0
+tcp.no_flow               | Detect                    | 0
+tcp.reused_ssn            | Detect                    | 0
+tcp.memuse                | Detect                    | 0
+tcp.syn                   | Detect                    | 0
+tcp.synack                | Detect                    | 0
+tcp.rst                   | Detect                    | 0
+tcp.segment_memcap_drop   | Detect                    | 0
+tcp.stream_depth_reached  | Detect                    | 0
+tcp.reassembly_memuse     | Detect                    | 0
+tcp.reassembly_gap        | Detect                    | 0
+detect.alert              | Detect                    | 162753
+flow_mgr.closed_pruned    | FlowManagerThread         | 0
+flow_mgr.new_pruned       | FlowManagerThread         | 0
+flow_mgr.est_pruned       | FlowManagerThread         | 0
+flow.memuse               | FlowManagerThread         | 3857152
+flow.spare                | FlowManagerThread         | 10000
+flow.emerg_mode_entered   | FlowManagerThread         | 0
+flow.emerg_mode_over      | FlowManagerThread         | 0
+-------------------------------------------------------------------
+Date: 10/8/2012 -- 06:51:36 (uptime: 0d, 00h 00m 16s)
+-------------------------------------------------------------------
+Counter                   | TM Name                   | Value
+-------------------------------------------------------------------
+decoder.pkts              | ReceivePcapFile           | 297400
+decoder.bytes             | ReceivePcapFile           | 520316
+decoder.ipv4              | ReceivePcapFile           | 4343
+decoder.ipv6              | ReceivePcapFile           | 0
+decoder.ethernet          | ReceivePcapFile           | 297400
+decoder.raw               | ReceivePcapFile           | 0
+decoder.sll               | ReceivePcapFile           | 0
+decoder.tcp               | ReceivePcapFile           | 0
+decoder.udp               | ReceivePcapFile           | 0
+decoder.sctp              | ReceivePcapFile           | 0
+decoder.icmpv4            | ReceivePcapFile           | 4343
+decoder.icmpv6            | ReceivePcapFile           | 0
+decoder.ppp               | ReceivePcapFile           | 0
+decoder.pppoe             | ReceivePcapFile           | 0
+decoder.gre               | ReceivePcapFile           | 0
+decoder.vlan              | ReceivePcapFile           | 0
+decoder.teredo            | ReceivePcapFile           | 0
+decoder.ipv4_in_ipv6      | ReceivePcapFile           | 0
+decoder.ipv6_in_ipv6      | ReceivePcapFile           | 0
+decoder.avg_pkt_size      | ReceivePcapFile           | 2
+decoder.max_pkt_size      | ReceivePcapFile           | 202
+defrag.ipv4.fragments     | ReceivePcapFile           | 0
+defrag.ipv4.reassembled   | ReceivePcapFile           | 0
+defrag.ipv4.timeouts      | ReceivePcapFile           | 0
+defrag.ipv6.fragments     | ReceivePcapFile           | 0
+defrag.ipv6.reassembled   | ReceivePcapFile           | 0
+defrag.ipv6.timeouts      | ReceivePcapFile           | 0
+defrag.max_frag_hits      | ReceivePcapFile           | 0
+tcp.sessions              | Detect                    | 0
+tcp.ssn_memcap_drop       | Detect                    | 0
+tcp.pseudo                | Detect                    | 0
+tcp.invalid_checksum      | Detect                    | 0
+tcp.no_flow               | Detect                    | 0
+tcp.reused_ssn            | Detect                    | 0
+tcp.memuse                | Detect                    | 0
+tcp.syn                   | Detect                    | 0
+tcp.synack                | Detect                    | 0
+tcp.rst                   | Detect                    | 0
+tcp.segment_memcap_drop   | Detect                    | 0
+tcp.stream_depth_reached  | Detect                    | 0
+tcp.reassembly_memuse     | Detect                    | 0
+tcp.reassembly_gap        | Detect                    | 0
+detect.alert              | Detect                    | 292034
+flow_mgr.closed_pruned    | FlowManagerThread         | 0
+flow_mgr.new_pruned       | FlowManagerThread         | 0
+flow_mgr.est_pruned       | FlowManagerThread         | 0
+flow.memuse               | FlowManagerThread         | 3857152
+flow.spare                | FlowManagerThread         | 10000
+flow.emerg_mode_entered   | FlowManagerThread         | 0
+flow.emerg_mode_over      | FlowManagerThread         | 0
+-------------------------------------------------------------------
+Date: 10/8/2012 -- 06:51:38 (uptime: 0d, 00h 00m 18s)
+-------------------------------------------------------------------
+Counter                   | TM Name                   | Value
+-------------------------------------------------------------------
+decoder.pkts              | ReceivePcapFile           | 352504
+decoder.bytes             | ReceivePcapFile           | 520316
+decoder.ipv4              | ReceivePcapFile           | 4343
+decoder.ipv6              | ReceivePcapFile           | 0
+decoder.ethernet          | ReceivePcapFile           | 352504
+decoder.raw               | ReceivePcapFile           | 0
+decoder.sll               | ReceivePcapFile           | 0
+decoder.tcp               | ReceivePcapFile           | 0
+decoder.udp               | ReceivePcapFile           | 0
+decoder.sctp              | ReceivePcapFile           | 0
+decoder.icmpv4            | ReceivePcapFile           | 4343
+decoder.icmpv6            | ReceivePcapFile           | 0
+decoder.ppp               | ReceivePcapFile           | 0
+decoder.pppoe             | ReceivePcapFile           | 0
+decoder.gre               | ReceivePcapFile           | 0
+decoder.vlan              | ReceivePcapFile           | 0
+decoder.teredo            | ReceivePcapFile           | 0
+decoder.ipv4_in_ipv6      | ReceivePcapFile           | 0
+decoder.ipv6_in_ipv6      | ReceivePcapFile           | 0
+decoder.avg_pkt_size      | ReceivePcapFile           | 1
+decoder.max_pkt_size      | ReceivePcapFile           | 202
+defrag.ipv4.fragments     | ReceivePcapFile           | 0
+defrag.ipv4.reassembled   | ReceivePcapFile           | 0
+defrag.ipv4.timeouts      | ReceivePcapFile           | 0
+defrag.ipv6.fragments     | ReceivePcapFile           | 0
+defrag.ipv6.reassembled   | ReceivePcapFile           | 0
+defrag.ipv6.timeouts      | ReceivePcapFile           | 0
+defrag.max_frag_hits      | ReceivePcapFile           | 0
+tcp.sessions              | Detect                    | 0
+tcp.ssn_memcap_drop       | Detect                    | 0
+tcp.pseudo                | Detect                    | 0
+tcp.invalid_checksum      | Detect                    | 0
+tcp.no_flow               | Detect                    | 0
+tcp.reused_ssn            | Detect                    | 0
+tcp.memuse                | Detect                    | 0
+tcp.syn                   | Detect                    | 0
+tcp.synack                | Detect                    | 0
+tcp.rst                   | Detect                    | 0
+tcp.segment_memcap_drop   | Detect                    | 0
+tcp.stream_depth_reached  | Detect                    | 0
+tcp.reassembly_memuse     | Detect                    | 0
+tcp.reassembly_gap        | Detect                    | 0
+detect.alert              | Detect                    | 348161
+flow_mgr.closed_pruned    | FlowManagerThread         | 0
+flow_mgr.new_pruned       | FlowManagerThread         | 0
+flow_mgr.est_pruned       | FlowManagerThread         | 0
+flow.memuse               | FlowManagerThread         | 3857152
+flow.spare                | FlowManagerThread         | 10000
+flow.emerg_mode_entered   | FlowManagerThread         | 0
+flow.emerg_mode_over      | FlowManagerThread         | 0
