@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
 
 		if ((socket = suricata_connect()) != 1) {
 			suricata_send(VERSION, socket);
-			cmd = suricata_cmd_pcaps(argv[1], argv[2]);
+			cmd = suricata_cmd_pcaps(get_realpath(argv[1]), get_realpath(argv[2]));
 			suricata_send(cmd, socket);
 			suricata_close(socket);
 			free(cmd);

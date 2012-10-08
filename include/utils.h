@@ -38,6 +38,9 @@ int is_directory(char *dir);
 /* Check if the file is empty */
 int is_empty(char *file);
 
+/* Return the absolute path of a file */
+char* get_realpath(char *file);
+
 /* Parse a file in tokens separated by a delimitor and build a list of PCAP elements - Returns the adress list */
 PCAP* build_list(char* file);
 

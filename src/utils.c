@@ -82,6 +82,18 @@ int is_empty(char *file) {
 	return 1;
 }
 
+char* get_realpath(char *file) {
+	char real_path[PATH_MAX];
+	char *path;
+
+	realpath(file, real_path);
+	if ((path = (char *) malloc(strlen(real_path) + 1)) == NULL)
+		return NULL;
+
+	strcpy(path, real_path);
+	return path;
+}
+
 PCAP* build_list(char* file) {
 	FILE *fd;
 	size_t len = 0;
@@ -89,9 +101,6 @@ PCAP* build_list(char* file) {
 	char *line;
 	char *token1;
 	char *token2;
-	char *pcap_file;
-	char *output_dir;
-	char real_path[PATH_MAX];
 	PCAP *list = NULL;
 
 	if (is_readable(file) != 0)
@@ -114,23 +123,7 @@ PCAP* build_list(char* file) {
 		if (token2[strlen(token2) -1] == '\n')
 			token2[strlen(token2) -1] = '\0';
 
-		realpath(token1, real_path);
-		pcap_file = (char *) malloc(strlen(real_path) + 1);	
-		if (pcap_file == NULL) {
-			fclose(fd);
-			return NULL;
-		}
-		strcpy(pcap_file, real_path);
-
-		realpath(token2, real_path);
-		if (output_dir == NULL) {
-			fclose(fd);
-			return NULL;
-		}
-		output_dir = (char *) malloc(strlen(real_path) + 1);
-		strcpy(output_dir, real_path);
-
-		list = push_list(pcap_file, output_dir, list);
+		list = push_list(get_realpath(token1), get_realpath(token2), list);
 	}
 	fclose(fd);
 	return list;
