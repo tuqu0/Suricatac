@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
 		if (is_readable(argv[1]) == 1 || is_directory(argv[2]) == 1)
 			return 1;
 
-		if ((socket = suricata_connect()) != -1) {
+		if ((socket = suricata_connect()) != 1) {
 			suricata_send(VERSION, socket);
 			cmd = suricata_cmd_pcaps(argv[1], argv[2]);
 			suricata_send(cmd, socket);
@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
 		if (check_list(list) == 0) {
 			tmp = list;
 
-			if ((socket = suricata_connect()) != -1) {
+			if ((socket = suricata_connect()) != 1) {
 				suricata_send(VERSION, socket);
 				cmd = suricata_cmd_pcaps(tmp->file, tmp->dir);
 				suricata_send(cmd, socket);

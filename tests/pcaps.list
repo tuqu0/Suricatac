@@ -10,6 +10,5 @@ pcaps/mysql_complete.pcap;output
 pcaps/pingTunnelAttack.pcap;output
 pcaps/slammer.pcap;output
 pcaps/SMBattack.pcap;output
-pcaps/teardrop.cap;output
 pcaps/telnet-cooked.pcap;output
 pcaps/zlip-1.pcap;output

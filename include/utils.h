@@ -17,10 +17,10 @@
 #define DELIMITOR ";"
 
 /* Element of a list with a .pcap filename and an output directory */
-typedef struct pcap {
+typedef struct PCAP_ {
 	char *file;
 	char *dir;
-	struct pcap *next;
+	struct PCAP_ *next;
 } PCAP;
 
 /* Options parser - Returns the selected option */

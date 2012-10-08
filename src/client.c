@@ -9,7 +9,7 @@ int suricata_connect() {
 	strcpy(addr.sun_path, SOCKET_PATH);
 
 	if (connect(socketfd, (struct sockaddr *)&addr, sizeof(addr)) == -1) {
-		fprintf(stderr, "connection socket error %i: %s\n", errno, strerror(errno));
+		fprintf(stderr, "error %i: %s\n", errno, strerror(errno));
 		return 1;
 	}
 	return socketfd;
@@ -28,7 +28,7 @@ int suricata_send(char *cmd, int socket) {
 	char *buf, *offset;
 
 	if (send(socket, cmd, len, 0) == -1) {
-		fprintf(stderr, "send socket error %i: %s\n", errno, strerror(errno));
+		fprintf(stderr, "error %i: %s\n", errno, strerror(errno));
 		return 1;
 	}
 
@@ -48,7 +48,7 @@ int suricata_send(char *cmd, int socket) {
 					continue;
 			}
 			else {
-				fprintf(stderr, "read socket error %i: %s\n", errno, strerror(errno));
+				fprintf(stderr, "error %i: %s\n", errno, strerror(errno));
 				return 1;
 			}
 		}
