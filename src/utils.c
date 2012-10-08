@@ -11,7 +11,7 @@ int  myopt(int argc, char **argv) {
 			case 'h':
 				printf("Suricatac - HELP\n");
 				ret = OPT_H;
-				break;
+				return ret;
 
 			case 'v':
 				if (argc > 2) {
@@ -21,7 +21,7 @@ int  myopt(int argc, char **argv) {
 				else
 					printf("usage: ./Suricatac -v [args]");
 				ret = OPT_V;	
-				break;
+				return ret;
 
 			case 'd':
 				if (argc > 3) {
@@ -33,14 +33,14 @@ int  myopt(int argc, char **argv) {
 				else
 					printf("usage: ./Suricatac -d [timeout] [args]\n");
 				ret = OPT_D;
-				break;
+				return ret;
 
 			case 'f':
 				if (argc != 3)
 					printf("usage: -f [file]\n");
 				ret = OPT_F;
-				break;
-		}
+				return ret;
+	}
 	}
 	return ret;
 }
@@ -92,7 +92,6 @@ PCAP* build_list(char* file) {
 	char *pcap_file;
 	char *output_dir;
 	char real_path[PATH_MAX];
-
 	PCAP *list = NULL;
 	
 	if (is_readable(file) != 0)

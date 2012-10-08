@@ -13,20 +13,15 @@ int main(int argc, char **argv) {
 		if (is_readable(argv[1]) == 1 || is_directory(argv[2]) == 1)
 			return 1;
 
-		cmd = get_cmdPcap(argv[1], argv[2]);
-		if (cmd == NULL)
-			return 1;
-
 		if ((socket = suricata_connect()) != -1) {
 			suricata_send(VERSION, socket);
-			suricata_read(socket);
+			cmd = suricata_cmd_pcaps(argv[1], argv[2]);
 			suricata_send(cmd, socket);
-			suricata_read(socket);
 			suricata_close(socket);
+			free(cmd);
 		}
-		free(cmd);
 	}
-	else if (opt == OPT_F && argc == 3) {
+	else if ((opt == OPT_F && argc == 3)) {
 		if ((list = build_list(argv[2])) == NULL)
 			return 1;
 
@@ -34,17 +29,16 @@ int main(int argc, char **argv) {
 			tmp = list;
 
 			if ((socket = suricata_connect()) != -1) {
-				cmd = get_cmdPcap(tmp->file, tmp->dir);
 				suricata_send(VERSION, socket);
-				suricata_read(socket);
+				cmd = suricata_cmd_pcaps(tmp->file, tmp->dir);
 				suricata_send(cmd, socket);
-				suricata_read(socket);
-				
+				free(cmd);
+
 				while (tmp->next != NULL) {
 					tmp = tmp->next;
-					cmd =get_cmdPcap(tmp->file, tmp->dir);
+					cmd = suricata_cmd_pcaps(tmp->file, tmp->dir);
 					suricata_send(cmd, socket);
-					suricata_read(socket);
+					free(cmd);
 				}
 				suricata_close(socket);
 			}
@@ -53,5 +47,6 @@ int main(int argc, char **argv) {
 	}
 	else 
 		usage();
+
 	return 0;
 }

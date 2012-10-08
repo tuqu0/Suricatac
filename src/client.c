@@ -22,31 +22,20 @@ int suricata_close(int socket) {
 }
 
 int suricata_send(char *cmd, int socket) {
-	int len;
+	int ret;
+	int cpt = 0;
+	int len = strlen(cmd);
+	char *buf, *offset;
 
-	printf("cmd = %s\n\n", cmd);
-	len = strlen(cmd);
 	if (send(socket, cmd, len, 0) == -1) {
 		fprintf(stderr, "send socket error %i: %s\n", errno, strerror(errno));
 		return 1;
 	}
-	return 0;
-}
 
-int suricata_read(int socket) {
-	int ret;
-	int cpt;
-	int len;
-	char *buf;
-	char *offset;
 
 	len = RCV_MAX;
-	cpt = 0;
-	buf = (char *) malloc(RCV_MAX);
-
-	if (buf == NULL)
+	if ((buf = (char *) malloc(RCV_MAX)) == NULL)
 		return 1;
-
 	offset = buf;
 	memset(buf, '\0', RCV_MAX);
 	while ((ret = recv(socket, offset, len, MSG_DONTWAIT))) {
@@ -74,16 +63,17 @@ int suricata_read(int socket) {
 		}
 	}
 
-	if (strlen(buf) > 0)
-		printf("suricata: %s\n", buf);
+	printf("command  : %s\n", cmd);
+	if (strlen(buf) > 0);
+	printf("suricata : %s\n\n", buf);
 	free(buf);
+
 	return 0;
 }
 
-char* get_cmdPcap(char *pcap, char *dir) {
-	char *cmd;
+char* suricata_cmd_pcaps(char *pcap, char *dir) {
+	char *cmd = (char *) malloc(sizeof(CMD_PCAP) + strlen(pcap) + strlen(dir) + 1);
 
-	cmd = (char *) malloc(sizeof(CMD_PCAP) + strlen(pcap) + strlen(dir) + 1);
 	if (cmd == NULL)
 		return NULL;
 

@@ -2,7 +2,6 @@ CC=gcc
 EXEC=Suricatac
 FILES= ./src/main.c ./src/utils.c ./src/client.c
 CFLAGS= -ggdb -O0 -Wall
-INCLUDES=
 LIBS=
 OBJS=$(FILES:.c=.o)
 DIST= puydoyeux_vincent-Suricatac
@@ -12,13 +11,12 @@ Suricatac: $(OBJS)
 	cp -f ./bin/$(EXEC) ./tests/
 
 .c.o:
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf ./src/*.o
 	rm -f ./bin/$(EXEC)
 	rm -f ./tests/$(EXEC)
-	rm -rf ./tests/output/*
 	
 dist: clean
 	mkdir ../$(DIST)
