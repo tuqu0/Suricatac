@@ -35,10 +35,7 @@ int main(int argc, char **argv) {
 			tmp = list;
 
 			if ((socket = suricata_connect()) != 1) {
-				//suricata_send(VERSION, socket);
-				//
-				cmd = json_cmd("version", "0.1");
-				suricata_send(cmd, socket);
+				suricata_send(VERSION, socket);
 				cmd = suricata_cmd_pcaps(tmp->file, tmp->dir);
 				suricata_send(cmd, socket);
 				free(cmd);

@@ -28,7 +28,4 @@ int suricata_send(char *cmd, int socket);
 /* Return the command to analyse pcap files */
 char* suricata_cmd_pcaps(char *pcap, char *dir);
 
-/* Return a json object for sending a command to Suricata */
-char* json_cmd(char *command, char *param);
-
 #endif /* !CLIENT_H */

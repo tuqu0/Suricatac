@@ -2,7 +2,7 @@ CC=gcc
 EXEC=Suricatac
 FILES= ./src/main.c ./src/utils.c ./src/client.c
 CFLAGS= -ggdb -O0 -Wall
-LIBS=./lib/libjansson.a
+LIBS=
 OBJS=$(FILES:.c=.o)
 DIST= puydoyeux_vincent-Suricatac
 
