@@ -17,7 +17,8 @@ clean:
 	rm -rf ./src/*.o
 	rm -f ./bin/$(EXEC)
 	rm -f ./tests/$(EXEC)
-	rm -rf ./tests/output/*
+	rm -rf ./tests/output/*.log
+	rm -rf ./tests/output/unified2.alert.*
 	
 dist: clean
 	mkdir ../$(DIST)
