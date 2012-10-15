@@ -8,8 +8,10 @@ int main(int argc, char **argv) {
 	PCAP *tmp;
 
 	opt = myopt(argc, argv);
-
-	if (opt == OPT_NONE && argc == 3) {
+	
+	if (opt == OPT_H || opt == OPT_V || opt == OPT_D)
+		return 0;
+	else if (opt == OPT_NONE && argc == 3) {
 		if (is_readable(argv[1]) == 1 || is_directory(argv[2]) == 1)
 			return 1;
 

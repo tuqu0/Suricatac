@@ -1,6 +1,6 @@
 CC=gcc
 EXEC=Suricatac
-FILES= ./src/main.c ./src/utils.c ./src/client.c ./src/jansson.c
+FILES= ./src/main.c ./src/utils.c ./src/client.c
 CFLAGS= -ggdb -O0 -Wall
 LIBS=./lib/libjansson.a
 OBJS=$(FILES:.c=.o)
@@ -25,3 +25,8 @@ dist: clean
 	cp -r ../$(EXEC)/*  ../$(DIST)
 	tar cvfj ../$(DIST).tar.gz ../$(DIST) 
 	rm -rf ../$(DIST)
+
+check: Suricatac
+	cd tests; $(MAKE)
+
+	
