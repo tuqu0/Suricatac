@@ -125,6 +125,9 @@ PCAP* build_list(char* file) {
 
 		list = push_list(get_realpath(token1), get_realpath(token2), list);
 	}
+
+	if (line != NULL)
+		free(line);
 	fclose(fd);
 	return list;
 }
@@ -150,8 +153,8 @@ PCAP* push_list(char *file, char *dir, PCAP *list) {
 
 int check_list(PCAP *list) {
 	PCAP *tmp;
-	tmp = list;
 
+	tmp = list;
 	if (is_readable(tmp->file) == 1 || is_directory(tmp->dir) == 1)
 		return 1;
 
