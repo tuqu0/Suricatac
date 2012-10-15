@@ -1,0 +1,14 @@
+# TODO LIST
+
++ Option -h (help)
++ Option -d [sec] timeout entre les arguments 
++ Option -v affichant la longueur des arguments
++ Envoi de la version au serveur
++ Envoi d'une commande: fichier.pcap output_directory
++ Lecture d'un fichier contenant la liste des fichiers à traiter
++ Gestion des erreurs
++ Check memory leak
++ Tests unitaires
+- Utilisation de la libjansson
+- Ajouter un mode console
+- Utilisation de threads
