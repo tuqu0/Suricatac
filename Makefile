@@ -23,6 +23,7 @@ clean:
 dist: clean
 	mkdir ../$(DIST)
 	cp -r ../$(EXEC)/*  ../$(DIST)
+	rm -rf ../$(DIST).tar.gz 2>/dev/null
 	tar cvfj ../$(DIST).tar.gz ../$(DIST) 
 	rm -rf ../$(DIST)
 
