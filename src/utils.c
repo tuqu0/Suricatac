@@ -57,7 +57,7 @@ void usage() {
 int is_readable(char *file) {
 	if (access(file, R_OK) == -1) {
 		fprintf(stderr, "error: %s is not readable\n", file);
-		return 1;
+		return -1;
 	}
 	return 0;
 }
@@ -68,7 +68,7 @@ int is_directory(char *dir) {
 	stat(dir, &st);
 	if (!S_ISDIR(st.st_mode)) {
 		fprintf(stderr, "error: %s is not a directory\n", dir);
-		return 1;
+		return -1;
 	}
 	return 0;
 }
@@ -79,7 +79,7 @@ int is_empty(char *file) {
 	stat(file, &st);
 	if (st.st_size == 0)
 		return 0;
-	return 1;
+	return -1;
 }
 
 char* get_realpath(char *file) {
@@ -155,13 +155,13 @@ int check_list(PCAP *list) {
 	PCAP *tmp;
 
 	tmp = list;
-	if (is_readable(tmp->file) == 1 || is_directory(tmp->dir) == 1)
-		return 1;
+	if (is_readable(tmp->file) == -1 || is_directory(tmp->dir) == -1)
+		return -1;
 
 	while (tmp->next != NULL) {
 		tmp = tmp->next;
-		if (is_readable(tmp->file) == 1 || is_directory(tmp->dir) == 1)
-			return 1;
+		if (is_readable(tmp->file) == -1 || is_directory(tmp->dir) == -1)
+			return -1;
 	}
 	return 0;
 }

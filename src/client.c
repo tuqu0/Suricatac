@@ -10,7 +10,7 @@ int suricata_connect() {
 
 	if (connect(socketfd, (struct sockaddr *)&addr, sizeof(addr)) == -1) {
 		fprintf(stderr, "error %i: %s\n", errno, strerror(errno));
-		return 1;
+		return -1;
 	}
 	return socketfd;
 }
@@ -18,7 +18,7 @@ int suricata_connect() {
 int suricata_close(int socket) {
 	if (socket != -1)
 		return close(socket);
-	return 1;
+	return -1;
 }
 
 int suricata_send(char *cmd, int socket) {
@@ -29,13 +29,13 @@ int suricata_send(char *cmd, int socket) {
 
 	if (send(socket, cmd, len, 0) == -1) {
 		fprintf(stderr, "error %i: %s\n", errno, strerror(errno));
-		return 1;
+		return -1;
 	}
 
 
 	len = RCV_MAX;
 	if ((buf = (char *) malloc(RCV_MAX)) == NULL)
-		return 1;
+		return -1;
 	offset = buf;
 	memset(buf, '\0', RCV_MAX);
 	while ((ret = recv(socket, offset, len, MSG_DONTWAIT))) {
@@ -49,7 +49,7 @@ int suricata_send(char *cmd, int socket) {
 			}
 			else {
 				fprintf(stderr, "error %i: %s\n", errno, strerror(errno));
-				return 1;
+				return -1;
 			}
 		}
 		else {
