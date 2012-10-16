@@ -81,4 +81,13 @@ char* suricata_cmd_pcaps(char *pcap, char *dir) {
 	return cmd;
 }
 
+char* json_cmd(char *cmd, char *param) {
+	char *cmd = NULL;
 
+	json_t *server_msg = json_object();
+	json_object_set_new(server_msg, cmd, json_string(param));
+	cmd = json_dumps(server_msg, 0);
+	free(server_msg);
+	
+	return cmd;
+}
