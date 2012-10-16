@@ -98,37 +98,34 @@ PCAP* build_list(char* file) {
 	FILE *fd;
 	size_t len = 0;
 	ssize_t read;
-	char *line;
+	char *line = NULL;
 	char *token1;
 	char *token2;
 	PCAP *list = NULL;
 
-	if (is_readable(file) != 0)
-		return NULL;
-	if ((fd = fopen(file, "r")) == NULL)
-		return NULL;
-	if (is_empty(file) == 0)
-		fprintf(stderr, "error: %s is empty\n", file);
+	if ((fd = fopen(file, "r")) != NULL && is_empty(file) != 0 && is_readable(file) == 0) {
+		while ((read = getline(&line, &len, fd)) != -1) {
+			token1 = strtok(line, DELIMITOR);
+			token2 = strtok(NULL, DELIMITOR);
 
-	while ((read = getline(&line, &len, fd)) != -1) {
-		token1 = strtok(line, DELIMITOR);
-		token2 = strtok(NULL, DELIMITOR);
+			if (token1 == NULL || token2 == NULL) {
+				fclose(fd);
+				fprintf(stderr, "error: unable to parse the line \"%s\"\n", line);
+				return NULL;
+			}
 
-		if (token1 == NULL || token2 == NULL) {
-			fclose(fd);
-			fprintf(stderr, "error: unable to parse the line \"%s\"\n", line);
-			return NULL;
+			if (token2[strlen(token2) -1] == '\n')
+				token2[strlen(token2) -1] = '\0';
+
+			list = push_list(get_realpath(token1), get_realpath(token2), list);
 		}
 
-		if (token2[strlen(token2) -1] == '\n')
-			token2[strlen(token2) -1] = '\0';
-
-		list = push_list(get_realpath(token1), get_realpath(token2), list);
+		if (line != NULL)
+			free(line);
+		fclose(fd);
 	}
-
-	if (line != NULL)
-		free(line);
-	fclose(fd);
+	else
+		fprintf(stderr, "error: unable to read %s\n", file);
 	return list;
 }
 
@@ -147,6 +144,7 @@ PCAP* push_list(char *file, char *dir, PCAP *list) {
 		while (tmp->next != NULL)
 			tmp = tmp->next;
 		tmp->next = elt;
+
 		return list;
 	}
 }
@@ -158,7 +156,7 @@ int check_list(PCAP *list) {
 	if (is_readable(tmp->file) == -1 || is_directory(tmp->dir) == -1)
 		return -1;
 
-	while (tmp->next != NULL) {
+	while (tmp != NULL && tmp->next != NULL) {
 		tmp = tmp->next;
 		if (is_readable(tmp->file) == -1 || is_directory(tmp->dir) == -1)
 			return -1;
@@ -167,24 +165,26 @@ int check_list(PCAP *list) {
 }
 
 void free_list(PCAP *list) {
-	PCAP *tmp;
-	PCAP *del;
+	PCAP *tmp = NULL;
+	PCAP *del = NULL;
 
-	tmp = list;
-	while(tmp->next != NULL) {
-		del = tmp;
-		tmp = tmp->next;
+	if (list != NULL) {
+		tmp = list;
+		while(tmp->next != NULL) {
+			del = tmp;
+			tmp = tmp->next;
 
-		if (del->file != NULL)
-			free(del->file);
-		if (del->dir != NULL)
-			free(del->dir);
-		free(del);
+			if (del->file != NULL)
+				free(del->file);
+			if (del->dir != NULL)
+				free(del->dir);
+			free(del);
+		}
+
+		if (tmp->file != NULL)
+			free(tmp->file);
+		if (tmp->dir != NULL)
+			free(tmp->dir);
+		free(tmp);
 	}
-
-	if (tmp->file != NULL)
-		free(tmp->file);
-	if (tmp->dir != NULL)
-		free(tmp->dir);
-	free(tmp);
 }
