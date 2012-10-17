@@ -1,6 +1,0 @@
-usage: ./Suricatac [option] [args]
- 			options: -h HELP
- 			-v [args]
- 			-d [timeout] [args]
- 			-f [list_pcaps]
- 			[pcapfile] [outputdir]

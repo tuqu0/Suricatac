@@ -1,6 +1,0 @@
-command  : {"version": "0.1"}
-suricata : {"return": "OK"}
-
-command  : {"command": "pcap-file", "arguments": { "filename": "/home/Vincent/Cours/C/Suricatac/tests/pcaps/slammer.pcap", "output-dir": "/home/Vincent/Cours/C/Suricatac/tests/output"}}
-suricata : {"return": "OK", "message": "Successfully added file to list"}
-
