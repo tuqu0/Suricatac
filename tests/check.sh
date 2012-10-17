@@ -11,7 +11,7 @@ CYAN='\033[36m'
 WHITE='\033[37m'
 
 # config
-CONFIG="tests.cfg"
+CONFIG="unit_tests.cfg"
 EXEC="./Suricatac"
 CMD=""
 FILE_OUTPUT=""
