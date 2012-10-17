@@ -16,12 +16,16 @@ int main(int argc, char **argv) {
 			return -1;
 
 		if ((socket = suricata_connect()) != 1) {
+
 			suricata_send(VERSION, socket);
+
 			file = get_realpath(argv[1]);
 			dir = get_realpath(argv[2]);
+		
 			cmd = suricata_cmd_pcaps(file, dir);
 			suricata_send(cmd, socket);
 			suricata_close(socket);
+		
 			free(file);
 			free(dir);
 			free(cmd);
@@ -36,6 +40,7 @@ int main(int argc, char **argv) {
 
 			if ((socket = suricata_connect()) != 1) {
 				suricata_send(VERSION, socket);
+
 				cmd = suricata_cmd_pcaps(tmp->file, tmp->dir);
 				suricata_send(cmd, socket);
 				free(cmd);

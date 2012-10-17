@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <sys/un.h>
 #include <unistd.h>
-#include <jansson.h>
 
 #define SOCKET_PATH "/usr/local/var/run/suricata/suricata-command.socket"
 #define VERSION "{\"version\": \"0.1\"}"

@@ -1,0 +1,85 @@
+-------- MAN -----------
+
+[ARBORESCENCE]
+/
+ bin 			--> emplacement du binaire Suricatac
+ include		--> fichiers .h
+ lib			--> bibliothèque statique libjansson 32 bits et 64 bits (pas utilisée pour le moment)
+ src			--> fichiers .c
+ tests /		--> emplcament du binaire Suricatac et des tests du projet
+	output 		--> répertoire où le serveur Suricata écrit les fichiers de sortie après analyse des fichiers pcaps envoyés
+	pcaps		--> fichiers .pcap
+	unit_tests	--> fichiers permettant de faire des tests sur le binaire
+
+
+
+
+[SERVEUR SURICATA]
+Pour tester le projet, le serveur suricata doit être installé en local sur la machine
+
+Installation du serveur Suricata :
+$ git clone -b json-socket-file-v2.5 https://github.com/regit/suricata.git
+$ cd suricata
+$ ./autogen.sh
+$ ./configure
+$ make
+# make install-full
+
+Lancement du serveur Suricata en tant que root :
+# suricata --unix-socket
+
+
+
+
+[COMPILATION DU PROJET]
+$ cd puydoyeux_vincent-Suricatac/
+$ make
+
+Pour recompiler le projet, effectuer la commande :
+$ make clean && make
+
+
+
+
+[EXECUTION DU PROJET]
+Le client suricata lit une socket local pour communiquer avec le serveur.
+Pour cela, le binaire du projet doit être exécuté en tant que root.
+Le Makefile génère un binaire "Suricatac" dans les répertoires bin et tests.
+# cd tests
+# ./Suricatac [option] [argument]
+
+
+
+
+[TESTS]
+Des tests ont été inclus au projet
+A la racine du répertoire du projet, exécuter la commande en tant que root :
+# make check
+
+Le répertoire "tests" contient des fichiers .pcap ainsi qu' un fichier pcaps.list qui contient
+une liste de tuples "fichier.pcap"-"output directory".
+Pour exécuter des tests manuels, exécuter les commandes suivantes en tant que root :
+
+# cd tests
+# ./Suricatac [option] [argument]
+
+Une vérification des fuites mémoires a également été effectuée via l'outil valgrind.
+
+
+
+
+[OPTIONS]
+Le binaire gère plusieurs options :
+
+	[file] [dir]				: sans option, le binaire prend en paramètre un fichier .pcap et un chemin vers un 
+						  répertoire. Après la demande d'analyse du fichier .pcap au serveur, ce dernier écrit
+						  le résultat de l'analyse dans le répertoire [dir]
+	
+	-f [file]	 			: le binaire prend en paramètre un fichier texte contenant une liste de fichiers .pcap
+						  à analyser. Le format d'une ligne est :  "fichier.pcap;directory"
+
+	-h					: affiche un message d'aide
+
+	-v [arg1 arg2 ... argn]			: affiche les arguments saisis ainsi que leurs longueurs
+
+	-d [timetout] [arg1 arg2 ... argn]	: affiche chaque argument saisi séparé par un timeout de [timeout] secondes

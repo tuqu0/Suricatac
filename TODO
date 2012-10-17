@@ -10,5 +10,5 @@
 + Check memory leak
 + Tests unitaires
 - Utilisation de la libjansson
-- Ajouter un mode console
-- Utilisation de threads
+- Ajout d'un mode console
+- Utilisation des threads
