@@ -8,7 +8,7 @@ int main(int argc, char **argv) {
 	PCAP *tmp;
 
 	opt = myopt(argc, argv);
-	
+
 	if (opt == OPT_H || opt == OPT_V || opt == OPT_D)
 		return 0;
 	else if (opt == OPT_NONE && argc == 3) {
@@ -21,11 +21,11 @@ int main(int argc, char **argv) {
 
 			file = get_realpath(argv[1]);
 			dir = get_realpath(argv[2]);
-		
+
 			cmd = suricata_cmd_pcaps(file, dir);
 			suricata_send(cmd, socket);
 			suricata_close(socket);
-		
+
 			free(file);
 			free(dir);
 			free(cmd);

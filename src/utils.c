@@ -108,16 +108,17 @@ PCAP* build_list(char* file) {
 			token1 = strtok(line, DELIMITOR);
 			token2 = strtok(NULL, DELIMITOR);
 
-			if (token1 == NULL || token2 == NULL) {
+			if (token1 != NULL && token2 != NULL) { 
+				if (token2[strlen(token2) -1] == '\n')
+					token2[strlen(token2) -1] = '\0';
+
+				list = push_list(get_realpath(token1), get_realpath(token2), list);
+			}
+			else {
 				fclose(fd);
 				fprintf(stderr, "error: unable to parse the line \"%s\"\n", line);
 				return NULL;
 			}
-
-			if (token2[strlen(token2) -1] == '\n')
-				token2[strlen(token2) -1] = '\0';
-
-			list = push_list(get_realpath(token1), get_realpath(token2), list);
 		}
 
 		if (line != NULL)
@@ -136,6 +137,7 @@ PCAP* push_list(char *file, char *dir, PCAP *list) {
 	elt = (PCAP *) malloc(sizeof(PCAP));
 	elt->file = file;
 	elt->dir = dir; 
+	elt->next = NULL;
 
 	if (list == NULL)
 		return elt;
